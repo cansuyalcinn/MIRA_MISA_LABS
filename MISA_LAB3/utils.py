@@ -33,9 +33,10 @@ def save_as_nifti(array, filename, reference_image):
     """
     reference_image = sitk.ReadImage(reference_image)
     image = sitk.GetImageFromArray(array)
-    image.SetOrigin(reference_image.GetOrigin())
-    image.SetSpacing(reference_image.GetSpacing())
-    image.SetDirection(reference_image.GetDirection())
+    image.CopyInformation(reference_image)
+    # image.SetOrigin(reference_image.GetOrigin())
+    # image.SetSpacing(reference_image.GetSpacing())
+    # image.SetDirection(reference_image.GetDirection())
     sitk.WriteImage(image, filename)
 
 # Read the list of patient ID's.
